@@ -17,6 +17,7 @@ const config: Config = {
         primaryGreen: "#049315",
         fontGreen: "#31572C",
         offWhite: "#F7F7F7",
+        primaryOrange: "#FFA50F"
       }
     },
   },

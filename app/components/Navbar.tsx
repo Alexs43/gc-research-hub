@@ -5,7 +5,7 @@ import { faSearch, faBars } from "@fortawesome/free-solid-svg-icons";
 
 export default function Navbar() {
   return (
-    <nav className="shadow-xl z-10 absolute w-full md:py-0 py-2">
+    <nav className="shadow-xl z-10 relative w-full md:py-0 py-2">
       <div className="flex justify-around items-center">
         <div className="md:hidden block">
           <button title="menu" type="button">
