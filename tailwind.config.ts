@@ -14,10 +14,14 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       colors:{
-        primaryGreen: "#049315",
+        primaryGreen: "#31572C",
         fontGreen: "#31572C",
         offWhite: "#F7F7F7",
-        primaryOrange: "#FFA50F"
+        primaryOrange: "#FFA50F",
+        primaryBlack: "#212427"
+      },
+      boxShadow: {
+        top: ' 0 -5px 5px -5px rgba(0, 0, 0, 0.25)',
       }
     },
   },

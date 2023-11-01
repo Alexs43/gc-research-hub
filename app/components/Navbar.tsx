@@ -1,9 +1,13 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faBars } from "@fortawesome/free-solid-svg-icons";
-
+import Login from "./login";
+import { useState } from "react";
 export default function Navbar() {
+  const [showModal, setShowModal] = useState<boolean>(false);
   return (
     <nav className="shadow-xl z-10 relative w-full md:py-0 py-2">
       <div className="flex justify-around items-center">
@@ -16,7 +20,10 @@ export default function Navbar() {
           <div className="relative md:w-24 md:h-24 h-14  w-14">
             <Image src="/rh_logo.png" alt="Research Hub Logo" fill={true} />
           </div>
-          <Link href="/" className="font-bold text-lg md:text-2xl">
+          <Link
+            href="/"
+            className="font-bold text-lg md:text-2xl text-primaryGreen"
+          >
             GC Research Hub
           </Link>
         </div>
@@ -35,51 +42,57 @@ export default function Navbar() {
             <FontAwesomeIcon icon={faSearch} />
           </button>
         </form>
-        <div className="md:block hidden">
-          <button title="user" type="button">
-            <Image
-              className="rounded-full"
-              src="/image-placeholder.jpg"
-              width={50}
-              height={50}
-              alt="User placeholder"
-            />
+        <div className="flex gap-5 p-2">
+          <button
+            className="ring-1 ring-primaryGreen text-primaryBlack font-semibold py-2 px-3 transition-all hover:ring-2 hover:ring-primaryGreen hover:text-primaryGreen  h-fit rounded-sm"
+            type="button"
+            title="signup"
+            onClick={()=>{location.href="/signup"}}
+          >
+            Sign Up
           </button>
-        </div>
-        <div className="md:hidden  flex justify-center gap-3 items-center">
-          <button className="text-lg" type="button" title="search">
-            <FontAwesomeIcon icon={faSearch} />
-          </button>
-          <button title="user" type="button">
-            <Image
-              className="rounded-full"
-              src="/image-placeholder.jpg"
-              width={40}
-              height={40}
-              alt="User placeholder"
-            />
+          <button
+            className="bg-primaryGreen ring-primaryGreen ring-1 hover:bg-white hover:text-primaryGreen hover:ring-2 transition-all  duration-300 text-white font-semibold py-2 px-3  h-fit w-24 rounded-sm"
+            type="button"
+            title="login"
+            onClick={() => setShowModal(true)}
+          >
+            Log In
           </button>
         </div>
       </div>
-      <div className="hidden md:block bg-primaryGreen text-white font-bold ">
-        <ul className="flex justify-around items-center">
-          <li className=" hover:bg-white hover:text-black h-full w-full py-5  transition-colors">
-            <Link className="w-full flex justify-center" href="/">HOME</Link>
+      {/* absolute top-0 h-screen w-1/3*/}
+      <div className="hidden md:block bg-primaryGreen text-white font-bold   md:h-auto  md:relative md:w-full">
+        {/* h-screen flex-col*/}
+        <ul className="flex   md:flex-row  md:h-auto  justify-around items-center">
+          <li className=" hover:bg-white hover:text-black h-full w-full py-2  transition-colors">
+            <Link className="w-full flex justify-center" href="/">
+              HOME
+            </Link>
           </li>
-          <li className=" hover:bg-white hover:text-black h-full w-full py-5  transition-colors">
-            <Link className="w-full flex justify-center" href="/colleges">COLLEGES</Link>
+          <li className=" hover:bg-white hover:text-black h-full w-full py-2  transition-colors">
+            <Link className="w-full flex justify-center" href="/colleges">
+              COLLEGES
+            </Link>
           </li>
-          <li className=" hover:bg-white hover:text-black h-full w-full py-5  transition-colors">
-            <Link className="w-full flex justify-center" href="/authors">AUTHOR</Link>
+          <li className=" hover:bg-white hover:text-black h-full w-full py-2  transition-colors">
+            <Link className="w-full flex justify-center" href="/authors">
+              AUTHOR
+            </Link>
           </li>
-          <li className=" hover:bg-white hover:text-black h-full w-full py-5  transition-colors">
-            <Link className="w-full flex justify-center" href="/about">ABOUT</Link>
+          <li className=" hover:bg-white hover:text-black h-full w-full py-2  transition-colors">
+            <Link className="w-full flex justify-center" href="/about">
+              ABOUT
+            </Link>
           </li>
-          <li className=" hover:bg-white hover:text-black h-full w-full py-5  transition-colors">
-            <Link className="w-full flex justify-center" href="/faqs">FAQs</Link>
+          <li className=" hover:bg-white hover:text-black h-full w-full py-2  transition-colors">
+            <Link className="w-full flex justify-center" href="/faqs">
+              FAQs
+            </Link>
           </li>
         </ul>
       </div>
+      <Login setShowModal={setShowModal} showModal={showModal}/>
     </nav>
   );
 }

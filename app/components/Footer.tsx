@@ -3,8 +3,8 @@ import {FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons/faLocationDot";
 export default function Footer() {
   return (
-    <footer>
-      <div className="flex flex-col justify-center items-center">
+    <footer className=" shadow-top pt-5">
+      <div className="flex flex-col justify-center items-center ">
         <Image
           src="/rh_logo.png"
           alt="GC Research Hub Logo"
@@ -14,7 +14,7 @@ export default function Footer() {
         <h1 className="text-2xl text-center font-bold text-fontGreen">
           Gordon College Research Hub
         </h1>
-        <p className=" font-light md:w-1/2 w-full md:px-0 px-5 text-center text-lg text-sm">
+        <p className=" font-light md:w-1/2 w-full md:px-0 px-5 text-center md:text-lg text-sm">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi cumque
           a, aliquam recusandae id debitis culpa vel esse libero, minima velit!
           Voluptates ipsa fuga enim facilis numquam alias, placeat recusandae.
@@ -34,9 +34,9 @@ export default function Footer() {
             Olongapo City Sports Complex, East Tapinac
         </div>
       </div>
-        <div className="flex justify-center items-center w-full bg-fontGreen text-white py-5">
-            <p className="text-center font-semibold">
-            © 2021 Gordon College Research Hub
+        <div className="flex justify-center items-center w-full bg-fontGreen text-white ">
+            <p className="text-center font-semibold md:text-md text-sm">
+            Copyright © 2021 Gordon College Research Hub
             </p>
         </div>
     </footer>
