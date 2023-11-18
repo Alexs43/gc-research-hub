@@ -30,7 +30,7 @@ export default function Home() {
             <p className=" mt-5 text-sm">
               The Gordon College Research Hub is a digital repository of College
               of Computer Science students and creative works of the faculty,
-              and researchers from the CCS Department.
+              and researchers from the CCS Department.asdfasdf
             </p>
           </div>
         </div>
