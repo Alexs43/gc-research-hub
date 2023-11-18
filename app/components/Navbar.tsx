@@ -49,7 +49,7 @@ export default function Navbar() {
             title="signup"
             onClick={()=>{location.href="/signup"}}
           >
-            Sign Up
+            Sign Upasdasda
           </button>
           <button
             className="bg-primaryGreen ring-primaryGreen ring-1 hover:bg-white hover:text-primaryGreen hover:ring-2 transition-all  duration-300 text-white font-semibold py-2 px-3  h-fit w-24 rounded-sm"
