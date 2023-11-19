@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import Footer from "./components/Footer";
+
 config.autoAddCss = false;
 
 const inter = Inter({ subsets: ["latin"] });
@@ -21,7 +22,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      
       <body className={inter.className + " relative"}>
         <Navbar />
         {children}

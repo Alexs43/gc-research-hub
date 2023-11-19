@@ -15,10 +15,14 @@ const config: Config = {
       },
       colors:{
         primaryGreen: "#31572C",
+        lightGreen: "#466841",
+        darkerGreen: "#2c4e28",
         fontGreen: "#31572C",
         offWhite: "#F7F7F7",
         primaryOrange: "#FFA50F",
-        primaryBlack: "#212427"
+        primaryBlack: "#212427",
+        offWhiteInput: "#EFEFEF",
+        inputBorder: "#A5A5A5"
       },
       boxShadow: {
         top: ' 0 -5px 5px -5px rgba(0, 0, 0, 0.25)',

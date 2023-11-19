@@ -6,8 +6,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faBars } from "@fortawesome/free-solid-svg-icons";
 import Login from "./login";
 import { useState } from "react";
+import Signup from "../signup/page";
 export default function Navbar() {
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [showUserModal, setShowUserModal] = useState<boolean>(false);
   return (
     <nav className="shadow-xl z-10 relative w-full md:py-0 py-2">
       <div className="flex justify-around items-center">
@@ -20,10 +22,7 @@ export default function Navbar() {
           <div className="relative md:w-24 md:h-24 h-14  w-14">
             <Image src="/rh_logo.png" alt="Research Hub Logo" fill={true} />
           </div>
-          <Link
-            href="/"
-            className="font-bold text-lg md:text-2xl text-primaryGreen"
-          >
+          <Link href="/" className="font-bold text-lg md:text-2xl">
             GC Research Hub
           </Link>
         </div>
@@ -42,22 +41,55 @@ export default function Navbar() {
             <FontAwesomeIcon icon={faSearch} />
           </button>
         </form>
-        <div className="flex gap-5 p-2">
+        <div className="md:block hidden relative">
           <button
-            className="ring-1 ring-primaryGreen text-primaryBlack font-semibold py-2 px-3 transition-all hover:ring-2 hover:ring-primaryGreen hover:text-primaryGreen  h-fit rounded-sm"
+            title="user"
             type="button"
-            title="signup"
-            onClick={()=>{location.href="/signup"}}
+            onClick={() => {
+              setShowUserModal(!showUserModal);
+            }}
           >
-            Sign Up
+            <Image
+              className="rounded-full"
+              src="/image-placeholder.jpg"
+              width={50}
+              height={50}
+              alt="User placeholder"
+            />
           </button>
-          <button
-            className="bg-primaryGreen ring-primaryGreen ring-1 hover:bg-white hover:text-primaryGreen hover:ring-2 transition-all  duration-300 text-white font-semibold py-2 px-3  h-fit w-24 rounded-sm"
-            type="button"
-            title="login"
-            onClick={() => setShowModal(true)}
-          >
-            Log In
+          {showUserModal && (
+            <div
+              id="popup"
+              className="flex flex-col bg-offWhite px-10 py-2 gap-5 shadow-md absolute z-10 md:w-48 top-full right-0"
+            >
+              <button
+                className="py-2 font-semibold"
+                title="Login"
+                onClick={() => {
+                  setShowModal(true);
+                  setShowUserModal(false);
+                }}
+              >
+                Log In
+              </button>
+              <button className="py-2 font-semibold" title="signup">
+                Sign Up
+              </button>
+            </div>
+          )}
+        </div>
+        <div className="md:hidden  flex justify-center gap-3 items-center">
+          <button className="text-lg" type="button" title="search">
+            <FontAwesomeIcon icon={faSearch} />
+          </button>
+          <button title="user" type="button">
+            <Image
+              className="rounded-full"
+              src="/image-placeholder.jpg"
+              width={40}
+              height={40}
+              alt="User placeholder"
+            />
           </button>
         </div>
       </div>
@@ -85,14 +117,14 @@ export default function Navbar() {
               ABOUT
             </Link>
           </li>
-          <li className=" hover:bg-white hover:text-black h-full w-full py-2  transition-colors">
+          {/* <li className=" hover:bg-white hover:text-black h-full w-full py-2  transition-colors">
             <Link className="w-full flex justify-center" href="/faqs">
               FAQs
             </Link>
-          </li>
+          </li> */}
         </ul>
       </div>
-      <Login setShowModal={setShowModal} showModal={showModal}/>
+      <Login setShowModal={setShowModal} showModal={showModal} />
     </nav>
   );
 }

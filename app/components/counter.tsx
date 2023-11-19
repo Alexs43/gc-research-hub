@@ -1,12 +1,12 @@
 import Image from "next/image";
-import { supabase } from "@/utils/supabase";
+import { supabase } from "@/utils/supabaseBrowser";
 import { useEffect, useState } from "react";
 export default function Counter() {
   const [studentData, setStudentData] = useState<number>(0);
   const [facultyData, setFacultyData] = useState<number>(0);
   const [downloadData, setDownloadData] = useState<number>(0);
   const [authorData, setAuthorData] = useState<number>(0);
-
+  
   useEffect(() => {
     const fetchData = async () => {
       const { data: facultyData, error: facultyError } = await supabase
