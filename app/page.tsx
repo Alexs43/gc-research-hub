@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Lottie from "lottie-react";
 import animationData from "../public/hero_animation.json";
 import { useEffect, useRef, useState, Suspense } from "react";
-import { supabase } from "@/utils/supabase";
 import Counter from "./components/counter";
 export default function Home() {
   const lottieRef = useRef<any>(null);
