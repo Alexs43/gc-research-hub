@@ -60,10 +60,10 @@ export default function Navbar() {
           {showUserModal && (
             <div
               id="popup"
-              className="flex flex-col bg-offWhite px-10 py-2 gap-5 shadow-md absolute z-10 md:w-48 top-full right-0"
+              className="flex flex-col bg-offWhite  gap-5 shadow-md absolute z-10 md:w-48 top-full right-0 "
             >
               <button
-                className="py-2 font-semibold"
+                className="py-4 px-10 font-semibold hover:bg-primaryGreen hover:text-white transition-all"
                 title="Login"
                 onClick={() => {
                   setShowModal(true);
@@ -72,7 +72,7 @@ export default function Navbar() {
               >
                 Log In
               </button>
-              <button className="py-2 font-semibold" title="signup">
+              <button className="py-4 px-10 font-semibold hover:bg-primaryGreen hover:text-white transition-all" title="signup">
                 Sign Up
               </button>
             </div>
