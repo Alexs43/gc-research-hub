@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-export default function CCS() {
+export default function CHTM() {
   return (
     <main>
       <div className="container mx-auto py-5 text-center">
@@ -17,15 +17,15 @@ export default function CCS() {
       <div className="container mx-auto flex justify-center gap-5 items-center flex-wrap text-white text-2xl">
         <Link
           href="/colleges/ccs"
-          className="bg-gradient-to-r from-transparent to-orange-600 via-orange-500 w-10/12 md:w-1/3  rounded-3xl overflow-hidden h-56 grid place-items-center text-center border  shadow-md relative"
+          className="bg-gradient-to-r from-transparent to-pink-600 via-pink-500 w-1/3  rounded-3xl overflow-hidden h-56 grid place-items-center text-center border  shadow-md relative"
         >
           <h1 className="font-bold text-center absolute z-[1] ">
             BS Computer Science
           </h1>
           <div className="h-full w-full bg-[rgb(0,0,0,0.2)] absolute top-0 right-0 "></div>
-          <div className="relative aspect-square w-[17rem] h-72 -top-10 md:-left-28 -left-14 transform -translate-x-20  ">
+          <div className="relative aspect-square w-[17rem] h-72 -top-10 -left-28 transform -translate-x-20  ">
             <Image
-              src="/static/images/ccs-logo.svg"
+              src="/static/images/chtm.webp"
               alt="Gordon College Logo"
               fill={true}
               className=" opacity-20"
@@ -34,15 +34,15 @@ export default function CCS() {
         </Link>
         <Link
           href="/colleges/ccs"
-          className="bg-gradient-to-r from-transparent to-orange-600 via-orange-500 w-10/12 md:w-1/3  rounded-3xl overflow-hidden h-56 grid place-items-center text-center border  shadow-md relative"
+          className="bg-gradient-to-r from-transparent to-pink-600 via-pink-500 w-1/3  rounded-3xl overflow-hidden h-56 grid place-items-center text-center border  shadow-md relative"
         >
           <h1 className="font-bold text-center absolute z-[1] ">
             BS Entertainment and Multimedia Computing
           </h1>
           <div className="h-full w-full bg-[rgb(0,0,0,0.2)] absolute top-0 right-0 "></div>
-          <div className="relative aspect-square w-[17rem] h-72 -top-10 md:-left-28 -left-14 transform -translate-x-20  ">
+          <div className="relative aspect-square w-[17rem] h-72 -top-10 -left-28 transform -translate-x-20  ">
             <Image
-              src="/static/images/ccs-logo.svg"
+              src="/static/images/chtm.webp"
               alt="Gordon College Logo"
               fill={true}
               className=" opacity-20"
@@ -51,15 +51,15 @@ export default function CCS() {
         </Link>
         <Link
           href="/colleges/ccs"
-          className="bg-gradient-to-r from-transparent to-orange-600 via-orange-500 w-10/12 md:w-1/3 rounded-3xl overflow-hidden h-56 grid place-items-center text-center border  shadow-md relative"
+          className="bg-gradient-to-r from-transparent to-pink-600 via-pink-500 w-1/3 rounded-3xl overflow-hidden h-56 grid place-items-center text-center border  shadow-md relative"
         >
           <h1 className="font-bold text-center absolute z-[1] ">
             BS Information Technology
           </h1>
           <div className="h-full w-full bg-[rgb(0,0,0,0.2)] absolute top-0 right-0 "></div>
-          <div className="relative aspect-square w-[17rem] h-72 -top-10 md:-left-28 -left-14 transform -translate-x-20  ">
+          <div className="relative aspect-square w-[17rem] h-72 -top-10 -left-28 transform -translate-x-20  ">
             <Image
-              src="/static/images/ccs-logo.svg"
+              src="/static/images/chtm.webp"
               alt="Gordon College Logo"
               fill={true}
               className=" opacity-20"

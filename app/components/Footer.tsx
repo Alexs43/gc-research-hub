@@ -3,7 +3,7 @@ import {FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons/faLocationDot";
 export default function Footer() {
   return (
-    <footer className=" shadow-top pt-5">
+    <footer className=" shadow-top pt-5 ">
       <div className="flex flex-col justify-center items-center ">
         <Image
           src="/rh_logo.png"
