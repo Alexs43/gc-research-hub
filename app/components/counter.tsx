@@ -8,6 +8,7 @@ export default function Counter() {
   const [downloadData, setDownloadData] = useState<number>(0);
   const [authorData, setAuthorData] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
+
   useEffect(() => {
     const fetchData = async () => {
       let authorCount: number | undefined = undefined;
@@ -53,7 +54,12 @@ export default function Counter() {
             <Image src="/static/images/student.svg" alt="student" fill={true} />
           </div>
           <h1 className="md:text-7xl text-4xl font-bold text-primaryGreen">
-            <ColorRing visible={loading} width={80} height={80} colors={['#31572C', '#31572C' , '#31572C' , '#31572C' , '#31572C']} />
+            <ColorRing
+              visible={loading}
+              width={80}
+              height={80}
+              colors={["#31572C", "#31572C", "#31572C", "#31572C", "#31572C"]}
+            />
             {!loading && studentData}
           </h1>
         </div>
@@ -65,7 +71,12 @@ export default function Counter() {
             <Image src="/static/images/faculty.svg" alt="faculty" fill={true} />
           </div>
           <h1 className="md:text-7xl text-4xl font-bold text-primaryGreen">
-            <ColorRing visible={loading} width={80} height={80} colors={['#31572C', '#31572C' , '#31572C' , '#31572C' , '#31572C']} />
+            <ColorRing
+              visible={loading}
+              width={80}
+              height={80}
+              colors={["#31572C", "#31572C", "#31572C", "#31572C", "#31572C"]}
+            />
             {!loading && facultyData}
           </h1>
         </div>
@@ -77,7 +88,12 @@ export default function Counter() {
             <Image src="/static/images/author.svg" alt="author" fill={true} />
           </div>
           <h1 className="md:text-7xl text-4xl font-bold text-primaryGreen">
-            <ColorRing visible={loading} width={80} height={80} colors={['#31572C', '#31572C' , '#31572C' , '#31572C' , '#31572C']} />
+            <ColorRing
+              visible={loading}
+              width={80}
+              height={80}
+              colors={["#31572C", "#31572C", "#31572C", "#31572C", "#31572C"]}
+            />
             {!loading && authorData}
           </h1>
         </div>
@@ -93,7 +109,12 @@ export default function Counter() {
             />
           </div>
           <h1 className="md:text-7xl text-4xl font-bold text-primaryGreen">
-            <ColorRing visible={loading} width={80} height={80} colors={['#31572C', '#31572C' , '#31572C' , '#31572C' , '#31572C']} />
+            <ColorRing
+              visible={loading}
+              width={80}
+              height={80}
+              colors={["#31572C", "#31572C", "#31572C", "#31572C", "#31572C"]}
+            />
             {!loading && downloadData}
           </h1>
         </div>
