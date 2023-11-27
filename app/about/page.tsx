@@ -4,13 +4,14 @@ import Link from "next/link";
 export default function ABOUT() {
   return (
     <main className="flex-grow">
-      <div className="container mx-auto py-5 text-center relative">
-        <div className="relative h-96">
+      <div className="container-full mx-auto py-5 text-center relative">
+        <div className=" h-96 ">
           <Image
             src="/static/images/about pic.jpg"
             alt="About"
             layout="fill" 
-            objectFit="cover" 
+            objectFit="cover"
+            objectPosition="center" 
             quality={100} 
           />
           <h1 className="absolute inset-x-0 bottom-0 flex items-center justify-center text-4xl font-bold text-white">

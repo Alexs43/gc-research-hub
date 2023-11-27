@@ -30,5 +30,21 @@ const config: Config = {
     },
   },
   plugins: [],
+  safelist:[
+    "to-red-600",
+    "via-red-500",
+    "to-yellow-600",
+    "via-yellow-500",
+    "to-orange-600",
+    "via-orange-500",
+    "to-blue-600",
+    "via-blue-500",
+    "to-green-600",
+    "via-green-500",
+    "to-pink-600",
+    "via-pink-500",
+    
+
+  ]
 }
 export default config

@@ -39,7 +39,7 @@ export default function Colleges() {
         {departments?.map((department: any) => (
           <Link
           key={department.college_id}
-          href="/colleges/ccs"
+          href={`/colleges/${department.college_code}`}
           className={`bg-gradient-to-r from-transparent to-${department.college_color}-600 via-${department.college_color}-500 w-10/12 md:w-1/3  rounded-3xl overflow-hidden h-56 grid place-items-center text-center border  shadow-md relative`}
         >
           <h1 className=" font-bold  text-center absolute z-[1] " key={department.college_id}>
