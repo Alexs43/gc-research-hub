@@ -22,11 +22,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className + " relative min-h-screen flex flex-col"}>
+      <body
+        className={inter.className + " relative min-h-screen flex flex-col"}
+      >
         <Navbar />
         {children}
-        <Footer />
       </body>
+      <Footer />
     </html>
   );
 }

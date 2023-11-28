@@ -5,11 +5,31 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faBars } from "@fortawesome/free-solid-svg-icons";
 import Login from "./login";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Signup from "../signup/page";
+import readUserSession from "@/utils/actions";
+import { supabase } from "@/utils/supabaseBrowser";
 export default function Navbar() {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showUserModal, setShowUserModal] = useState<boolean>(false);
+  const [user, setUser] = useState<any>();
+
+  useEffect(() => {
+    const getUser = async () => {
+      const user = await readUserSession();
+      setUser(user);
+      console.log(user);
+    };
+    getUser();
+  }, []);
+
+  readUserSession();
+
+  const handleLogout = async () => {
+    const logout = await supabase.auth.signOut();
+
+    window.location.reload();
+  };
   return (
     <nav className="shadow-xl z-10 relative w-full md:py-0 py-2">
       <div className="flex justify-around items-center">
@@ -42,7 +62,7 @@ export default function Navbar() {
           </button>
         </form>
         <div className="md:block hidden relative">
-          <button
+          {/* <button
             title="user"
             type="button"
             onClick={() => {
@@ -56,24 +76,53 @@ export default function Navbar() {
               height={50}
               alt="User placeholder"
             />
-          </button>
+          </button> */}
+          {user?.data?.session ? (
+            <button
+              title="user"
+              type="button"
+              onClick={() => {
+                setShowUserModal(!showUserModal);
+              }}
+            >
+              <Image
+                className="rounded-full"
+                src="/image-placeholder.jpg"
+                width={50}
+                height={50}
+                alt="User placeholder"
+              />
+            </button>
+          ) : (
+            <button
+              title="user"
+              type="button"
+              onClick={() => {
+                setShowModal(true);
+              }}
+              className="py-2 px-3 bg-primaryGreen text-white rounded-sm font-semibold hover:bg-white outline outline-2 hover:text-primaryGreen  hover:outline-primaryGreen transition-colors duration-300"
+            >
+              Log In
+            </button>
+          )}
           {showUserModal && (
             <div
               id="popup"
-              className="flex flex-col bg-offWhite  gap-5 shadow-md absolute z-10 md:w-48 top-full right-0 "
+              className="flex flex-col bg-offWhite   shadow-md absolute z-10 md:w-48 top-full right-0 "
             >
               <button
-                className="py-4 px-10 font-semibold hover:bg-primaryGreen hover:text-white transition-all"
-                title="Login"
-                onClick={() => {
-                  setShowModal(true);
-                  setShowUserModal(false);
-                }}
+                className="py-4 px-10 font-semibold text-primaryGreen hover:bg-primaryGreen hover:text-white transition-all"
+                title="My Account"
+                onClick={() => {}}
               >
-                Log In
+                My Account
               </button>
-              <button className="py-4 px-10 font-semibold hover:bg-primaryGreen hover:text-white transition-all" title="signup">
-                Sign Up
+              <button
+                className="py-4 px-10 font-semibold text-primaryGreen hover:bg-primaryGreen hover:text-white transition-all"
+                title="Logout"
+                onClick={handleLogout}
+              >
+                Logout
               </button>
             </div>
           )}
@@ -122,6 +171,16 @@ export default function Navbar() {
               FAQs
             </Link>
           </li> */}
+          {user?.data?.session && (
+            <li className=" hover:bg-white hover:text-black h-full w-full py-2  transition-colors">
+              <Link
+                className="w-full flex justify-center"
+                href="/students/classes"
+              >
+                CLASSES
+              </Link>
+            </li>
+          )}
         </ul>
       </div>
       <Login setShowModal={setShowModal} showModal={showModal} />

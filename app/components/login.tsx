@@ -35,7 +35,7 @@ export default function Login({
         password: data.password,
       });
   
-      console.log(result);
+      window.location.reload();
 
       // Handle the result as needed (e.g., show error messages, redirect, etc.)
     } catch (error) {
