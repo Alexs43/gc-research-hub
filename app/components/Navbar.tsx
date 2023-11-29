@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faBars } from "@fortawesome/free-solid-svg-icons";
 import Login from "./login";
 import { useEffect, useState } from "react";
-import Signup from "../signup/page";
+import Signup from "../(client)/signup/page";
 import readUserSession from "@/utils/actions";
 import { supabase } from "@/utils/supabaseBrowser";
 export default function Navbar() {

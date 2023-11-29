@@ -4,9 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Lottie from "lottie-react";
-import animationData from "../public/hero_animation.json";
+import animationData from "../../public/hero_animation.json";
 import { useEffect, useRef, useState, Suspense } from "react";
-import Counter from "./components/counter";
+import Counter from "../components/counter";
 export default function Home() {
   const lottieRef = useRef<any>(null);
   useEffect(() => {
