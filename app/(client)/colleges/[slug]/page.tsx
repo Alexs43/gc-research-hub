@@ -1,47 +1,25 @@
-"use client";
 import { FC } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { supabase } from "@/utils/supabaseBrowser";
-import { useEffect, useState } from "react";
-
-export default function Page({ params }: any) {
+import createSupabaseServerClient from "@/utils/supabase";
+export default async function Page({ params }: any) {
   const slug = params.slug;
-  const [courses, setCourses] = useState<any>();
-  const [department, setDepartment] = useState<any>();
-
-  useEffect(() => {
-    async function getDepartment() {
-      let { data: department, error } = await supabase
-        .from("colleges")
-        .select("*")
-        .eq("college_code", slug);
-
-      if (error) console.log(error);
-      else {
-        setDepartment(department);
-        console.log(department);
-        getCourses(department);
-      }
-    }
-    async function getCourses(department: any) {
-      let { data: courses, error } = await supabase
-        .from("courses")
-        .select("*")
-        .eq("college_id", department[0].college_id)
-        .order("course_name", { ascending: true });
-
-      if (error) console.log(error);
-      else {
-        setCourses(courses);
-        console.log("asdasdas");
-      }
-    }
-
-    getDepartment();
-    
-  }, []);
-
+  const supabase = await createSupabaseServerClient();
+  const { data: department, error: depError } = await supabase
+    .from("colleges")
+    .select("*")
+    .eq("college_code", slug);
+  let courses;
+  if (depError) {
+    return <div>error</div>;
+  } else {
+    const coursesQuery = await supabase
+      .from("courses")
+      .select("*")
+      .eq("college_id", department[0].college_id)
+      .order("course_name", { ascending: true });
+    courses = coursesQuery.data;
+  }
   return (
     <main className="py-10">
       <div className="container mx-auto py-5 text-center">

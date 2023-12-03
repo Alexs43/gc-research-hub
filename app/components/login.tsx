@@ -17,7 +17,7 @@ export default function Login({
   showModal,
   setShowModal,
 }: {
-  showModal: boolean;
+  showModal: boolean; 
   setShowModal: (showModal: boolean) => void;
 }) {
   const form = useForm<z.infer<typeof FormSchema>>({
