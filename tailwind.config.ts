@@ -22,11 +22,13 @@ const config: Config = {
         primaryOrange: "#FFA50F",
         primaryBlack: "#212427",
         offWhiteInput: "#EFEFEF",
-        inputBorder: "#A5A5A5"
+        inputBorder: "#A5A5A5",
+        darkGray : "#4A4A4A",
       },
       boxShadow: {
         top: ' 0 -5px 5px -5px rgba(0, 0, 0, 0.25)',
-      }
+        right: ' 5px 0 5px -5px rgba(0, 0, 0, 0.25)',
+      },
     },
   },
   plugins: [],

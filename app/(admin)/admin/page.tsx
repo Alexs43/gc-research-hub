@@ -9,7 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { supabase } from "@/utils/supabaseBrowser";
 import { useRouter } from 'next/navigation';
-
+import "../../globals.css"
 const FormSchema = z.object({
   email: z.string().email(),
   password: z.string().min(1, {
