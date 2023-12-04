@@ -2,6 +2,7 @@ import { FC } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import createSupabaseServerClient from "@/utils/supabase";
+import { redirect } from "next/navigation";
 export default async function Page({ params }: any) {
   const slug = params.slug;
   const supabase = await createSupabaseServerClient();
@@ -10,8 +11,9 @@ export default async function Page({ params }: any) {
     .select("*")
     .eq("college_code", slug);
   let courses;
-  if (depError) {
-    return <div>error</div>;
+  if (!department || department.length === 0) {
+    // Handle empty department or error (e.g., show error message)
+    redirect("/404");
   } else {
     const coursesQuery = await supabase
       .from("courses")

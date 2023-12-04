@@ -6,10 +6,12 @@ import { signIn } from "../../auth-server-action/action";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect } from "react";
+import { useEffect, useRef } from 'react';
 import { supabase } from "@/utils/supabaseBrowser";
-import { useRouter } from 'next/navigation';
-import "../../globals.css"
+import { useRouter } from "next/navigation";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+import "../../globals.css";
 const FormSchema = z.object({
   email: z.string().email(),
   password: z.string().min(1, {
@@ -17,18 +19,19 @@ const FormSchema = z.object({
   }),
 });
 export default function Page() {
+  const MySwal = withReactContent(Swal);
+  const [loginText, setLoginText] = React.useState("Log In");
   const [user, setUser] = React.useState<any>();
   const router = useRouter();
   useEffect(() => {
     const getUser = async () => {
       const user = await supabase.auth.getSession();
-      setUser(user);      
-      if(user?.data?.session !== null) {
-        router.push("/admin/dashboard");  
+      setUser(user);
+      if (user?.data?.session !== null) {
+        router.push("/admin/dashboard");
       }
     };
     getUser();
-    
   }, []);
 
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -40,21 +43,36 @@ export default function Page() {
   });
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
+    setLoginText("Logging In...");
     try {
       const result = await signIn({
         email: data.email,
         password: data.password,
       });
-
-      window.location.reload();
+      const user = await JSON.parse(result);
+      if (user?.data?.session?.user?.role !== "admin") {
+        MySwal.fire({
+          title: "You are not an admin",
+          text: "You will be redirected to the home page.",
+          icon: "error",
+          showConfirmButton: false,
+        })
+        setTimeout(()=>{
+          router.push("/");
+        }, 1000)
+      } else {
+        router.push("/admin/dashboard");
+      }
 
       // Handle the result as needed (e.g., show error messages, redirect, etc.)
     } catch (error) {
       // Handle errors (e.g., display an error message)
       console.error("Login failed:", error);
+    }finally{
+      setLoginText("Log In");
     }
   }
- 
+
   return (
     <div className="flex flex-col py-24  items-center bg-[#F0F0F1] h-screen">
       <div className="relative w-1/12 aspect-square">
@@ -90,7 +108,7 @@ export default function Page() {
                 className="bg-primaryGreen text-white py-3 px-5 rounded-lg w-full font-bold md:text-xl text-lg hover:bg-darkerGreen transition-colors shadow-sm"
                 type="submit"
               >
-                Log In
+                {loginText}
               </button>
             </div>
           </div>
