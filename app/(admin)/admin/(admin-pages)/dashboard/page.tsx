@@ -1,3 +1,4 @@
+"use server";
 
 import React from 'react'
 import createSupabaseServerClient from '@/utils/supabase'
@@ -12,8 +13,9 @@ export default async function page() {
   }
   
   return (
-    <div className='bg-offWhite w-full'>
-      <h1>Admin Dashboard</h1>
+    <div className=' w-full px-10 py-20'>
+      <h1 className='text-4xl text-primaryBlack py-2'>Dashboard</h1>
+      <hr className="border-2 border-primaryGreen"/>
     </div>
   )
 }
