@@ -50,7 +50,8 @@ export default function Page() {
         password: data.password,
       });
       const user = await JSON.parse(result);
-      if (user?.data?.session?.user?.role !== "admin") {
+      console.log(user);
+      if (user?.data?.session?.user?.user_metadata?.role !== "admin") {
         MySwal.fire({
           title: "You are not an admin",
           text: "You will be redirected to the home page.",

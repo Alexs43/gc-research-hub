@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "../../../globals.css"
+import "../../../globals.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
-import Navbar from './components/Navbar';
-
+import Navbar from "./components/Navbar";
+import { Toaster } from "@/components/ui/toaster";
 config.autoAddCss = false;
 
 const inter = Inter({ subsets: ["latin"] });
@@ -21,10 +21,11 @@ export default function AdminLayout({
 }) {
   return (
     <html lang="en">
-      
       <body className="flex">
         <Navbar />
-        {children}</body>
+        {children}
+        <Toaster />
+      </body>
     </html>
   );
 }

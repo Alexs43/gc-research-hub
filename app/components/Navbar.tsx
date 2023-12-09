@@ -162,6 +162,11 @@ export default function Navbar() {
               ABOUT
             </Link>
           </li>
+          <li className=" hover:bg-white hover:text-black h-full w-full py-2  transition-colors">
+            <Link className="w-full flex justify-center" href="/submit-paper">
+              SUBMIT A PAPER
+            </Link>
+          </li>
           {/* <li className=" hover:bg-white hover:text-black h-full w-full py-2  transition-colors">
             <Link className="w-full flex justify-center" href="/faqs">
               FAQs

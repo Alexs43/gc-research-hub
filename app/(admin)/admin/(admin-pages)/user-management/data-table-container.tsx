@@ -2,7 +2,7 @@
 
 import React, { useEffect } from "react";
 
-import { Payment, columns } from "./columns";
+import { Student, columns } from "./columns";
 import { DataTable } from "./data-table";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,35 +10,44 @@ import {
   faChalkboardTeacher,
   faUserTie,
 } from "@fortawesome/free-solid-svg-icons";
+export const revalidate = 0;
+import { supabase } from "@/utils/supabaseBrowser";
 export default function DTContainer() {
   const [data, setData] = React.useState<any>("user");
   const [loading, setLoading] = React.useState<boolean>(true);
   const activeClass = "bg-offWhiteDarker";
   const inactiveClass = "bg-white hover:bg-offWhite";
-  const sampleData1: Payment[] = [
-    {
-      id: "728ed52f",
-      amount: 100,
-      status: "pending",
-      email: "m@example.com",
-    },
-  ];
-  const sampleData2: Payment[] = [
-    {
-      id: "1231123",
-      amount: 100,
-      status: "success",
-      email: "",
-    },
-  ];
+
+  const [studentData, setStudentData] = React.useState<Student[]>([]);
   useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
+    getStudentData();
   }, []);
+  async function getStudentData() {
+    setLoading(true)
+    const { data, error } = await supabase
+      .from("student")
+      .select(
+        "student_id, year_level, block, course_id, college_id, person(first_name, last_name, middle_name, role, email, contact_number, gender, date_of_birth)"
+      )
+      .eq("person.role", "student");
+
+    if (error) console.log("error", error);
+    setLoading(false)
+    const students = data?.map((student: any) => {
+      return {
+        id: student.student_id,
+        full_name: `${student.person?.first_name} ${student.person?.last_name}`,
+        email: student.person?.email,
+        year_level: student.year_level,
+        college_id: student.college_id,
+        action: student.student_id,
+      };
+    });
+
+    setStudentData(students|| []);
+  }
   return (
     <div className="w-full h-full mt-2 flex border rounded-lg shadow-md">
-      
       <div className="w-2/12 h-full flex flex-col py-3 px-5 gap-3 border-r">
         <h1 className="text-2xl text-primaryGreen py-2 mb-4">Roles</h1>
         <button
@@ -102,11 +111,11 @@ export default function DTContainer() {
       </div>
       <div className="w-full">
         {loading ? (
-          <div>Loading...</div>
+          <div className="w-full flex items-center justify-center h-full text-2xl font-bold ">Loading...</div>
         ) : data === "user" ? (
-          <DataTable data={sampleData1} columns={columns} />
+          <DataTable data={studentData} columns={columns} />
         ) : (
-          <DataTable data={sampleData2} columns={columns} />
+          <></>
         )}
       </div>
     </div>
