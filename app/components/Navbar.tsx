@@ -162,17 +162,14 @@ export default function Navbar() {
               ABOUT
             </Link>
           </li>
-          <li className=" hover:bg-white hover:text-black h-full w-full py-2  transition-colors">
-            <Link className="w-full flex justify-center" href="/submit-paper">
-              SUBMIT A PAPER
-            </Link>
-          </li>
+        
           {/* <li className=" hover:bg-white hover:text-black h-full w-full py-2  transition-colors">
             <Link className="w-full flex justify-center" href="/faqs">
               FAQs
             </Link>
           </li> */}
           {user?.data?.session && (
+            <>
             <li className=" hover:bg-white hover:text-black h-full w-full py-2  transition-colors">
               <Link
                 className="w-full flex justify-center"
@@ -181,6 +178,12 @@ export default function Navbar() {
                 CLASSES
               </Link>
             </li>
+              <li className=" hover:bg-white hover:text-black h-full w-full py-2  transition-colors">
+              <Link className="w-full flex justify-center" href="/submit-paper">
+                SUBMIT A PAPER
+              </Link>
+            </li>
+            </>
           )}
         </ul>
       </div>

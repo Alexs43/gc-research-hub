@@ -41,8 +41,10 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Calendar } from "@/components/ui/calendar";
 import { supabase } from "@/utils/supabaseBrowser";
+import { useRouter} from 'next/navigation';
 export default function CreateUserModal() {
   const { toast } = useToast();
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -74,7 +76,8 @@ export default function CreateUserModal() {
 
       toastError(res.error.message);
     } else {
-      toastSuccess();
+      toastSuccess(); 
+      router.push('user-management');
     }
   }
   const [courses, setCourses] = useState<any>([]);
@@ -167,7 +170,7 @@ export default function CreateUserModal() {
                   <FormLabel>Role</FormLabel>
                   <Select
                     onValueChange={(value) => {
-                      field.onChange(value)
+                      field.onChange(value);
                       setSelectedRole(value);
                       console.log(value);
                     }}
@@ -197,7 +200,7 @@ export default function CreateUserModal() {
                     <FormLabel>Department</FormLabel>
                     <Select
                       onValueChange={(value) => {
-                        field.onChange(value)
+                        field.onChange(value);
                         fetchCourses(value);
                       }}
                       defaultValue={field.value}
@@ -225,88 +228,89 @@ export default function CreateUserModal() {
             )}
             {selectedRole === "student" && (
               <>
-              <FormField
-                control={form.control}
-                name="college_id"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Course</FormLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select the course of the user" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {courses.map((course: any) => (
-                          <SelectItem
-                            key={course.course_id}
-                            value={course.course_id.toString()}
-                          >
-                            {course.course_name}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-              control={form.control}
-              name="year_level"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Year Level</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select a year level for the user" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="1">1st</SelectItem>
-                      <SelectItem value="2">2nd</SelectItem>
-                      <SelectItem value="3">3rd</SelectItem>
-                      <SelectItem value="4">4th</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="block"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Block</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select a year level for the user" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="A">A</SelectItem>
-                      <SelectItem value="B">B</SelectItem>
-                     
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            </>
+                <FormField
+                  control={form.control}
+                  name="course_id"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Course</FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select the course of the user" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {courses.map((course: any) => (
+                            <SelectItem
+                              key={course.course_id}
+                              value={course.course_id.toString()}
+                            >
+                              {course.course_name}
+                              {course?.course_major &&
+                                ` Major in ${course.course_major}`}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="year_level"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Year Level</FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select a year level for the user" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="1">1st</SelectItem>
+                          <SelectItem value="2">2nd</SelectItem>
+                          <SelectItem value="3">3rd</SelectItem>
+                          <SelectItem value="4">4th</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="block"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Block</FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select a year level for the user" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="A">A</SelectItem>
+                          <SelectItem value="B">B</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </>
             )}
             <FormField
               control={form.control}
@@ -435,7 +439,6 @@ export default function CreateUserModal() {
           </form>
         </Form>
       </div>
-      
     </div>
   );
 }

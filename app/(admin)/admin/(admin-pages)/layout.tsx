@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: "Admin | GC Research Hub",
   description: "Admin",
 };
-
+export const revalidate = 0;
 export default function AdminLayout({
   children,
 }: {

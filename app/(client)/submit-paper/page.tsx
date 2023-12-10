@@ -1,5 +1,5 @@
 import React from "react";
-
+import SubmissionForm from "./submissionForm";
 export default function page() {
   return (
     <main>
@@ -11,7 +11,9 @@ export default function page() {
         <p className="mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis modi, quod nostrum ut magni veritatis consequuntur at sit eum expedita. Commodi quia suscipit, nihil ducimus tempora quidem tenetur modi! Itaque!</p>
       </div>
 
-      <div className="container mx-auto"></div>
+      <div className="container mx-auto py-10 px-10">
+        <SubmissionForm />
+      </div>
     </main>
   );
 }
