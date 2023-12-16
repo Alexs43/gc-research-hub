@@ -16,10 +16,12 @@ export default async function Colleges() {
           Gordon College Departments
         </h1>
         <p className="">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
-          excepturi nobis eius, aperiam consectetur, quas, modi sed sapiente
-          tempore suscipit ut explicabo voluptatibus dolor. Nobis dolores unde
-          rem iure nihil!
+          Explore the Gordon College Research Repository, a dynamic academic hub
+          tailored to the unique requirements of students and faculty across
+          diverse departments. Uncover a wealth of defended thesis papers and
+          scholarly works, offering a centralized space for collaborative
+          academic exploration and knowledge discovery, enhancing the
+          educational journey at Gordon College.
         </p>
       </div>
       <div className="container mx-auto flex justify-center flex-wrap gap-x-10  text-white gap-y-10 text-2xl">
