@@ -26,6 +26,11 @@ import {
 } from "@/components/ui/select";
 import addComments from "@/utils/actions/addComments";
 import { toast } from "@/components/ui/use-toast";
+const ACCEPTED_FILE_TYPES = [
+  "application/pdf",
+  "application/msword",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+];
 export const commmentSchema = z.object({
   comment: z
     .string({
@@ -39,6 +44,16 @@ export const commmentSchema = z.object({
     required_error: "Please enter a review_id.",
   }),
   comment_owner_id: z.string(),
+  attachment: z
+    .custom<File>()
+    .optional()
+    .refine(
+      (file) => ACCEPTED_FILE_TYPES.includes(file?.type || "") || (file?.size ?? 0) <= 0,
+      {
+        message: "Please upload a valid file type.",
+      }
+    ),
+  file_path: z.string(),
 });
 export default function Forms({
   status,
@@ -56,23 +71,26 @@ export default function Forms({
       status: status,
       review_id: review_id,
       comment_owner_id: current_user,
+      attachment: new File([""], "filename"),
+      file_path: "",
     },
   });
   async function onSubmit(values: z.infer<typeof commmentSchema>) {
-    const res = await addComments(values);
-    if (res !== "success") {
-      toast({
-        title: "Error",
-        description: "Something went wrong.",
-        variant: "destructive",
-      });
-    } else {
-      toast({
-        title: "Success",
-        description: "Comment added.",
-      });
-      window.location.reload();
-    }
+    // const res = await addComments(values);
+    console.log(values);
+    // if (res !== "success") {
+    //   toast({
+    //     title: "Error",
+    //     description: "Something went wrong.",
+    //     variant: "destructive",
+    //   });
+    // } else {
+    //   toast({
+    //     title: "Success",
+    //     description: "Comment added.",
+    //   });
+    //   window.location.reload();
+    // }
   }
   return (
     <Form {...form}>
@@ -97,9 +115,8 @@ export default function Forms({
             name="review_id"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Comment</FormLabel>
                 <FormControl>
-                  <Textarea placeholder="Enter your comment here" {...field} />
+                  <Input placeholder="Enter your comment here" {...field} />
                 </FormControl>
 
                 <FormMessage />
@@ -111,9 +128,21 @@ export default function Forms({
             name="comment_owner_id"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Comment</FormLabel>
                 <FormControl>
-                  <Textarea placeholder="Enter your comment here" {...field} />
+                  <Input placeholder="Enter your comment here" {...field} />
+                </FormControl>
+
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="file_path"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input placeholder="Enter your comment here" {...field} />
                 </FormControl>
 
                 <FormMessage />
@@ -141,10 +170,32 @@ export default function Forms({
                 <SelectContent>
                   <SelectItem value="Submitted">Submitted</SelectItem>
                   <SelectItem value="Under Review">Under Review</SelectItem>
+                  <SelectItem value="Revision Requested">
+                    Revision Requested
+                  </SelectItem>
                   <SelectItem value="Rejected">Rejected</SelectItem>
                   <SelectItem value="Approved">Approved</SelectItem>
                 </SelectContent>
               </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="attachment"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Attachment</FormLabel>
+              <FormControl>
+                <Input
+                  accept="application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                  type="file"
+                  onChange={(e) =>
+                    field.onChange(e.target.files ? e.target.files[0] : null)
+                  }
+                />
+              </FormControl>
               <FormMessage />
             </FormItem>
           )}

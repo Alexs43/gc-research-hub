@@ -11,6 +11,7 @@ import {
   faBook,
   faCommentDots,
   faRightFromBracket,
+  faFile,
 } from "@fortawesome/free-solid-svg-icons";
 import { usePathname } from "next/navigation";
 export default function Links() {
@@ -76,6 +77,16 @@ export default function Links() {
       >
         <FontAwesomeIcon icon={faCommentDots} className="text-2xl mr-7" />
         Manage Requests
+      </Link>
+      <Link
+        href="/admin/publish-paper "
+        className={
+          `flex justify-start items-center rounded-md py-3 px-6 font-bold transition-colors border mb-5 text-xs ` +
+          `${pathname === "/admin/publish-paper" ? activeClass : inactiveClass}`
+        }
+      >
+        <FontAwesomeIcon icon={faFile} className="text-2xl mr-7" />
+        Publish Paper
       </Link>
     </div>
   );

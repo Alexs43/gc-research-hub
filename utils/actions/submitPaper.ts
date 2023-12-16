@@ -16,16 +16,23 @@ export default async function submitPaper(data: FormData) {
   const abstract = data.get("abstract");
   const keywords = data.get("keywords");
   const file_path = data.get("file_path");
-  const { data: authorRes, error: authorError } = await supabase
+  let authorCreateRes: any;
+  const { data: authorExists, error: authorExistsError } = await supabase
     .from("author")
-    .insert({
+    .select("*")
+    .eq("author_id", author_id);
+  if (authorExistsError) throw authorExistsError;
+  if (authorExists.length === 0) {
+    const authorCreateRes = await supabase.from("author").insert({
       author_id: author_id,
       person_id: author_id,
       created_at: new Date(),
       author_type: author_role,
     });
-  if (authorError) throw authorError;
-  console.log(authorRes);
+  }
+
+  if (authorCreateRes.error) throw authorCreateRes.error;
+  console.log(authorCreateRes.data);
   const { data: paperRes, error: paperError } = await supabase
     .from("submitted_papers")
     .insert({

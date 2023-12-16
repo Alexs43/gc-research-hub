@@ -106,13 +106,13 @@ export default function Navbar() {
               id="popup"
               className="flex flex-col bg-offWhite   shadow-md absolute z-10 md:w-48 top-full right-0 "
             >
-              <button
-                className="py-4 px-10 font-semibold text-primaryGreen hover:bg-primaryGreen hover:text-white transition-all"
+              <Link
+                className="py-4 px-10 font-semibold text-primaryGreen hover:bg-primaryGreen hover:text-white transition-all  text-center"
                 title="My Account"
-                onClick={() => {}}
+                href="/my-account"
               >
                 My Account
-              </button>
+              </Link>
               <button
                 className="py-4 px-10 font-semibold text-primaryGreen hover:bg-primaryGreen hover:text-white transition-all"
                 title="Logout"
