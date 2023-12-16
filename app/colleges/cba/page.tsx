@@ -8,10 +8,7 @@ export default function CBA() {
           Gordon College Departments
         </h1>
         <p className="">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
-          excepturi nobis eius, aperiam consectetur, quas, modi sed sapiente
-          tempore suscipit ut explicabo voluptatibus dolor. Nobis dolores unde
-          rem iure nihil!
+        As you embark on your academic journey at Gordon College, each department is committed to providing a supportive and enriching environment. We encourage you to explore the distinctive offerings of each department and engage actively in your chosen field of study.
         </p>
       </div>
       <div className="container mx-auto flex justify-center gap-5 items-center flex-wrap text-white text-2xl">

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+
 export default function CCS() {
   return (
     <main>
@@ -16,7 +17,7 @@ export default function CCS() {
       </div>
       <div className="container mx-auto flex justify-center gap-5 items-center flex-wrap text-white text-2xl">
         <Link
-          href="/colleges/ccs"
+          href="/colleges/ccs/cs"
           className="bg-gradient-to-r from-transparent to-orange-600 via-orange-500 w-10/12 md:w-1/3  rounded-3xl overflow-hidden h-56 grid place-items-center text-center border  shadow-md relative"
         >
           <h1 className="font-bold text-center absolute z-[1] ">
@@ -33,7 +34,24 @@ export default function CCS() {
           </div>
         </Link>
         <Link
-          href="/colleges/ccs"
+          href="/colleges/ccs/act"
+          className="bg-gradient-to-r from-transparent to-orange-600 via-orange-500 w-10/12 md:w-1/3  rounded-3xl overflow-hidden h-56 grid place-items-center text-center border  shadow-md relative"
+        >
+          <h1 className="font-bold text-center absolute z-[1] ">
+            Asssociation of Computer Studies
+          </h1>
+          <div className="h-full w-full bg-[rgb(0,0,0,0.2)] absolute top-0 right-0 "></div>
+          <div className="relative aspect-square w-[17rem] h-72 -top-10 md:-left-28 -left-14 transform -translate-x-20  ">
+            <Image
+              src="/static/images/ccs-logo.svg"
+              alt="Gordon College Logo"
+              fill={true}
+              className=" opacity-20"
+            />
+          </div>
+        </Link>
+        <Link
+          href="/colleges/ccs/emc"
           className="bg-gradient-to-r from-transparent to-orange-600 via-orange-500 w-10/12 md:w-1/3  rounded-3xl overflow-hidden h-56 grid place-items-center text-center border  shadow-md relative"
         >
           <h1 className="font-bold text-center absolute z-[1] ">
@@ -50,7 +68,7 @@ export default function CCS() {
           </div>
         </Link>
         <Link
-          href="/colleges/ccs"
+          href="/colleges/ccs/it"
           className="bg-gradient-to-r from-transparent to-orange-600 via-orange-500 w-10/12 md:w-1/3 rounded-3xl overflow-hidden h-56 grid place-items-center text-center border  shadow-md relative"
         >
           <h1 className="font-bold text-center absolute z-[1] ">
