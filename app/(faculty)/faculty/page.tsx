@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser, faLock } from "@fortawesome/free-solid-svg-icons";
+import { Session,  AuthError  } from "@supabase/supabase-js";
 import Link from "next/link";
 const FormSchema = z.object({
   email: z.string().email(),
@@ -17,12 +18,29 @@ const FormSchema = z.object({
     message: "Password is required.",
   }),
 });
+
+type TUser = {
+  data: {
+      session: Session;
+  };
+  error: null;
+} | {
+  data: {
+      session: null;
+  };
+  error: AuthError;
+} | {
+  data: {
+      session: null;
+  };
+  error: null;
+}
 async function getUser() {
   const user = await readUserSession();
   return user;
 }
 
-export default  function Admin({user}: {user: any}) {
+export default  function Admin({user}: {user: TUser}) {
 
 
   if (user) {
