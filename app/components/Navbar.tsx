@@ -7,6 +7,7 @@ import { faSearch, faBars } from "@fortawesome/free-solid-svg-icons";
 import Login from "./login";
 import { useEffect, useState } from "react";
 import { supabase } from "@/utils/supabaseBrowser";
+import SearchBar from "./searchBar";
 export default function Navbar() {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showUserModal, setShowUserModal] = useState<boolean>(false);
@@ -42,21 +43,7 @@ export default function Navbar() {
             GC Research Hub
           </Link>
         </div>
-        <form action="" className="relative md:w-1/3 w-full md:block hidden">
-          <input
-            type="text"
-            title="search"
-            placeholder="Search"
-            className="border-2 border-black rounded-full px-3 py-1 w-full md:block hidden"
-          />
-          <button
-            title="search"
-            type="submit"
-            className="absolute top-1/2 transform -translate-y-1/2 right-5"
-          >
-            <FontAwesomeIcon icon={faSearch} />
-          </button>
-        </form>
+        <SearchBar/>
         <div className="md:block hidden relative">
           {/* <button
             title="user"

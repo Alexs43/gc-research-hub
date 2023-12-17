@@ -15,7 +15,7 @@ export default function Footer() {
           Gordon College Research Hub
         </h1>
         <p className=" font-light md:w-1/2 w-full md:px-0 px-5 text-center md:text-lg text-sm">
-        The GC Research Hub is Gordon College students' exclusive academic companion, offering a specialized repository of defended thesis papers tailored to meet their unique needs, providing a user-friendly digital space with 24/7 accessibility, intuitive navigation, and convenience for both students and professors to explore scholarly work and enhance their academic journey.
+        The GC Research Hub is Gordon College students&apos; exclusive academic companion, offering a specialized repository of defended thesis papers tailored to meet their unique needs, providing a user-friendly digital space with 24/7 accessibility, intuitive navigation, and convenience for both students and professors to explore scholarly work and enhance their academic journey.
         </p>
       </div>
       <div className="flex md:flex-row flex-col text-center justify-around items-center w-2/3 mx-auto py-14">
