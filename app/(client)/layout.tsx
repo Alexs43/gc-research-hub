@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import Footer from "../components/Footer";
-
+import { Toaster } from "@/components/ui/toaster";
 config.autoAddCss = false;
 
 const inter = Inter({ subsets: ["latin"] });
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title: "GC Research Hub",
   description: "A research hub for the Gordon College community",
 };
-
+export const revalidate = 0;
 export default function RootLayout({
   children,
 }: {
@@ -28,8 +28,9 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Footer />
+        <Toaster />
       </body>
-      
+  
     </html>
   );
 }

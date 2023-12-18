@@ -38,7 +38,9 @@ export default function SearchCards({ data }: { data: any }) {
   async function getAuthorDetails(authors: any) {
     const promises = authors.map(async (author_paper: any) => {
       const { data: authorDetails, error } = await supabase.from('author_old').select().eq('author_id', author_paper.author_id);
-      return authorDetails[0];
+      if (authorDetails) {
+        return authorDetails[0];
+      }
     });
 
     Promise.all(promises).then(allDetails => {
@@ -59,9 +61,9 @@ export default function SearchCards({ data }: { data: any }) {
   // Example usage
 
   return (
-    <Card>
+    <Card className="mt-5">
       <CardHeader>
-        <CardTitle>{loading ? <Skeleton className="h-10 w-[300px]" /> : data?.title}</CardTitle>
+        <CardTitle>{loading ? <Skeleton className="h-10 w-[300px]" /> :   <Link className='hover:underline transition-all' rel="noopener noreferrer" target="_blank" href={`/paper?paperId=${data?.id}`}>{data?.title}</Link>}</CardTitle>
         <div>
 
         </div>
@@ -98,7 +100,7 @@ export default function SearchCards({ data }: { data: any }) {
       </CardContent>
       <CardFooter>
         <Button asChild>
-          <Link href={`/paper?paperId=${data?.id}`}>Read More</Link>
+          <Link rel="noopener noreferrer" target="_blank" href={`/paper?paperId=${data?.id}`}>Read More</Link>
         </Button>
       </CardFooter>
     </Card>

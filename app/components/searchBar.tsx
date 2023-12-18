@@ -5,17 +5,15 @@ import { Input } from "@/components/ui/input";
 import * as z from "zod";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from "react-hook-form";
-import { useRouter } from 'next/navigation';
-
+import { useRouter,  } from 'next/navigation';
 export default function SearchBar() {
     const router = useRouter();
-    
     async function onSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
         const formData = new FormData(event.currentTarget)
         if(formData.get('search') != "" && formData.get('search') != null){
-            router.push(`search/?query=${formData.get('search')}`)
+            router.push(`/search/?query=${formData.get('search')}`)
         }
     }
     return (

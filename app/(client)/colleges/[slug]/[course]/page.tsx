@@ -3,25 +3,33 @@ import Image from "next/image";
 import Link from "next/link";
 import createSupabaseServerClient from "@/utils/supabase";
 import { redirect } from "next/navigation";
-export default async function Page({ params }: any) {
+import { Tables } from "@/types/supabase"
+
+type Year = Tables<'school_year'> & {
+  year_id: number;
+  start_date: string;
+  end_date: string;
+};
+
+
+export default async function Page({ params }: {params: {slug: string, course: string}}) {
   const slug = params.slug;
+  const course = params.course;
   const supabase = await createSupabaseServerClient();
+  let school_year: Year[];
   const { data: department, error: depError } = await supabase
     .from("colleges")
     .select("*")
     .eq("college_code", slug);
-  let courses;
   if (!department || department.length === 0) {
     // Handle empty department or error (e.g., show error message)
     redirect("/404");
   } else {
-    const coursesQuery = await supabase
-      .from("courses")
-      .select("*")
-      .eq("college_id", department[0].college_id)
-      .order("course_name", { ascending: true });
-    courses = coursesQuery.data;
+    const { data: schoolYear, error } = await supabase.from('school_year').select("*")
+    school_year = schoolYear || [];
   }
+
+  
   return (
     <main className="py-10">
       <div className="container mx-auto py-5 text-center">
@@ -35,26 +43,29 @@ export default async function Page({ params }: any) {
           rem iure nihil!
         </p>
       </div>
+
       <div className="container mx-auto flex justify-center flex-wrap gap-x-10  text-white gap-y-10 text-2xl">
-        {courses?.map((course: any) => (
+        {school_year?.map((year: Year) => (
           <Link
-            key={course?.course_id}
-            href={`/colleges/${slug}/${course?.course_code}`}
+            key={year?.year_id}
+            href={`/colleges/${slug}/${course}/${year?.year_id}`}
             className={`bg-gradient-to-r from-transparent to-${department[0].college_color}-600 via-${department[0].college_color}-500 w-10/12 md:w-1/3  rounded-3xl overflow-hidden h-56 grid place-items-center text-center border  shadow-md relative`}
           >
             <h1
               className=" font-bold  text-center absolute z-[1] "
-              key={course?.course_id}
+              key={year?.year_id}
             >
-              {course?.course_name}
+              Academic Year <br />
+              {parseInt(year?.start_date.split("-")[0], 10)} -{" "}
+              {parseInt(year?.end_date.split("-")[0], 10) }
             </h1>
             <div
               className="h-full w-full bg-[rgb(0,0,0,0.2)] absolute top-0 right-0 "
-              key={course?.course_id}
+              key={year?.year_id}
             ></div>
             <div
               className="relative aspect-square w-[17rem] h-72 -top-10 md:-left-28 -left-14 transform -translate-x-20  "
-              key={course?.course_id}
+              key={year?.year_id}
             >
               <Image
                 src={`/static/images/${department[0].college_logo_name}`}

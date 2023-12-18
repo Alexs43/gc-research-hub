@@ -66,11 +66,8 @@ export default async function publishPaper(data: string, file_path?: string) {
   console.log(authorPaperRes)
   console.log(authorPaperErr)
   
-  if(authorPaperRes){
-    return "success";
-  }
-  else{
-    return "error";
-  }
- 
+    if(authorPaperErr){
+      return "error";
+    }
+  return 'success';
 }

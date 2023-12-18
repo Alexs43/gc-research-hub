@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import createSupabaseServerClient from "@/utils/supabase";
+export const revalidate = 0;
 export default async function Colleges() {
   const supabase = await createSupabaseServerClient();
 
@@ -29,7 +30,9 @@ export default async function Colleges() {
           <Link
             key={department.college_id}
             href={`/colleges/${department.college_code}`}
-            className={`bg-gradient-to-r from-transparent to-${department.college_color}-600 via-${department.college_color}-500 w-10/12 md:w-1/3  rounded-3xl overflow-hidden h-56 grid place-items-center text-center border  shadow-md relative`}
+            className={`bg-gradient-to-r from-transparent to-${department.college_color}-600 via-${department.college_color}-500 w-10/12 md:w-1/3  rounded-3xl overflow-hidden h-56 grid place-items-center text-center border  shadow-md relative ${department.college_code != "ccs" ? "opacity-70 pointer-events-none" : "opacity-100"}`}
+            aria-disabled={department.college_code != "ccs" ? true : false}
+            tabIndex={department.college_code != "ccs" ? -1 : undefined}
           >
             <h1
               className=" font-bold  text-center absolute z-[1] "
@@ -46,6 +49,7 @@ export default async function Colleges() {
               key={department.college_id}
             >
               <Image
+                draggable="false"
                 src={`/static/images/${department.college_logo_name}`}
                 alt="Gordon College Logo"
                 fill={true}
